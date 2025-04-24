@@ -24,3 +24,11 @@ class Solution(object):
                 return root.right
             elif not root.right:
                 return root.left
+            min_larger_node = self.findMin(root.right)
+            root.val = min_larger_node.val
+            root.right = self.deleteNode(root.right, min_larger_node.val)
+        return root
+    def findMin(self, node):
+        while node.left:
+            node = node.left
+        return node
